@@ -57,7 +57,7 @@ def login(session, username, password):
 def get_teams(session, gw_id):
     predictions_url = f"{GW}?id={gw_id}"
     html = session.get(predictions_url, verify=False).text
-    teams = re.findall(r'<td>(.*?)</td>', html)
+    teams = re.findall(r'<td>([A-Za-z\s]*)</td>', html)
 
     # if len(teams) != 20:
     #     raise Exception(f"Unexpected number of teams found in the HTML. Expected 20, found {len(teams)}.")
