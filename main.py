@@ -89,7 +89,6 @@ def post_predictions(session, predictions, gw_id):
     teams = [predictions[team] for team in teams]
 
     fixtures = [(fixture_id_start + i, home, away) for i, (home, away) in enumerate(zip(teams[::2], teams[1::2]))]
-    print(fixtures)
 
     # build payload
     payload = {
@@ -106,9 +105,17 @@ def post_predictions(session, predictions, gw_id):
     response = session.post(predictions_url, data=payload, verify=False)
     return response
 
+def print_predictions(predictions):
+    predictions = list(predictions.items())
+    print("Predictions:")
+    for home, away in zip(predictions[::2], predictions[1::2]):
+        print(f"{home[0]} {home[1]}-{away[1]} {away[0]}")
+
 def do_predictions(session, gw_id):
     predictions = make_predictions(get_teams(session, gw_id=gw_id), TABLE)
+    print_predictions(predictions)
     r = post_predictions(session, predictions=predictions, gw_id=gw_id)
+
     if r.status_code != 200:
         raise Exception(f"Posting predictions failed with status code {r.status_code}")
 
@@ -128,4 +135,4 @@ print("Login successful!")
 for gw_id in get_avaliable_gws(s):
     print(f"Making predictions for Game Week {gw_id}...")
     do_predictions(s, gw_id)
-    print(f"Predictions for Game Week {gw_id} submitted successfully!")
+    print(f"Predictions for Game Week {gw_id} submitted successfully!\n")
