@@ -113,6 +113,9 @@ def print_predictions(predictions):
 
 def do_predictions(session, gw_id):
     predictions = make_predictions(get_teams(session, gw_id=gw_id), TABLE)
+    if len(predictions) == 0:
+        return
+    
     print_predictions(predictions)
     r = post_predictions(session, predictions=predictions, gw_id=gw_id)
 
