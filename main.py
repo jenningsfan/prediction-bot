@@ -84,6 +84,7 @@ def post_predictions(session, predictions, gw_id):
     csrf_token = get_csrf_token(session, predictions_url)
     
     html = session.get(predictions_url, verify=False).text
+    view_user_id = re.search(r'name="ViewUserId"[^>]*value="([^"]+)"', html).group(1)
     fixture_id_start = int(re.search(r'name="Predictions\[0\]\.FixtureId"\s+value="([^"]+)"', html).group(1))
     teams = get_teams(session, gw_id)
     teams = [predictions[team] for team in teams]
@@ -94,6 +95,7 @@ def post_predictions(session, predictions, gw_id):
     payload = {
         "__RequestVerificationToken": csrf_token,
         "Id": gw_id,
+        "ViewUserId": view_user_id,
     }
 
     for i in range(len(fixtures)):
