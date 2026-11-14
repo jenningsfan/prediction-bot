@@ -15,25 +15,25 @@ PASSWORD = config["Password"]
 
 TABLE = [
     "Arsenal",
-    "Manchester City",
-    "Manchester United",
-    "Aston Villa",
-    "Liverpool",
-    "Bournemouth",
-    "Sunderland",
     "Brighton and Hove Albion",
-    "Brentford",
+    "Manchester City",
+    "Liverpool",
     "Chelsea",
-    "Fulham",
-    "Newcastle United",
     "Everton",
+    "Bournemouth",
+    "Brentford",
     "Leeds",
-    "Crystal Palace",
-    "Nottingham Forest",
+    "Aston Villa",
     "Tottenham Hotspur",
-    "Coventry City",
-    "Ipswich Town",
+    "Newcastle United",
     "Hull City"
+    "Ipswich Town",
+    "Fulham",
+    "Nottingham Forest",
+    "Coventry City",
+    "Manchester United",
+    "Sunderland",
+    "Crystal Palace",
 ]
 
 logging.captureWarnings(True)
