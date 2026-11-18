@@ -26,7 +26,7 @@ TABLE = [
     "Aston Villa",
     "Tottenham Hotspur",
     "Newcastle United",
-    "Hull City"
+    "Hull City",
     "Ipswich Town",
     "Fulham",
     "Nottingham Forest",
